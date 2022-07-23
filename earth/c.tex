@@ -1,0 +1,19 @@
+\documentclass[UTF8]{minimal}
+\usepackage{tikz}
+\usepackage{xeCJK}
+\usetikzlibrary{shapes,quotes,angles,calc}
+\usepackage[active,tightpage]{preview} 
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+\setCJKmainfont{Iansui 094}
+
+\begin{document}
+\begin{tikzpicture}
+
+	\node[draw,align=center] (west) at (0, 0) {西岸\\ 亞洲、澳洲};
+	\node[draw,align=center] (east) at (10, 0) {東岸\\ 南美洲};
+
+	\draw (west) -- (east) node [midway, above] {大氣} node [midway, below] {海洋};
+
+\end{tikzpicture}
+\end{document}

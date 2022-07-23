@@ -1,0 +1,34 @@
+\documentclass[UTF8]{minimal}
+\usepackage{tikz}
+\usepackage{xeCJK}
+\usetikzlibrary{shapes,quotes,angles,calc}
+\usepackage[active,tightpage]{preview} 
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+\setCJKmainfont{Iansui 094}
+
+\begin{document}
+\tikzset{
+	sun/.style={draw,fill=white,circle},
+	earth/.style={draw,circle,fill=black,rotate=66.5,inner sep=1pt},
+	zodiac/.style={draw,circle,fill=white,outer sep=1mm}
+}
+\begin{tikzpicture}
+
+	\draw [step=1,black,thin] (-2, -2)	grid (4, 4);
+
+	\coordinate (sun) at (0, 0);
+	\node [sun] at (sun) {太陽};
+	\draw (sun) ellipse (2 and 2);
+
+	\foreach \i in {0,...,8} {
+		\pgfmathtruncatemacro{\a}{15 * \i};
+		\pgfmathtruncatemacro{\b}{180 + \a};
+		\coordinate (e\i) at ($(sun) + (\a:2 and 2)$);
+		\coordinate (l\i) at ($(sun) + (\a:2.2 and 2.2)$);
+		\node [earth] at (e\i) {};
+		\node at (l\i) {\i};
+	}
+
+\end{tikzpicture}
+\end{document}

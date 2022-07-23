@@ -1,0 +1,37 @@
+\documentclass[UTF8]{minimal}
+\usepackage{tikz}
+\usepackage{xeCJK}
+\usetikzlibrary{shapes,quotes,angles,calc}
+\usepackage[active,tightpage]{preview} 
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+\setCJKmainfont{Iansui 094}
+
+\begin{document}
+\tikzset{
+	sun/.style={draw,circle},
+	earth/.style={draw,circle split,fill=white,rotate=66.5,outer sep=1mm},
+	zodiac/.style={draw,circle,fill=white,outer sep=1mm}
+}
+\begin{tikzpicture}
+
+	\coordinate (sun) at (0, 0);
+	\node [sun] at (sun) {太陽};
+	\draw (sun) ellipse (4 and 2);
+	\draw (sun) ellipse (8 and 4);
+
+	\foreach \i in {1,...,4} {
+		\pgfmathtruncatemacro{\a}{90 * \i};
+		\coordinate (e\i) at ($(sun) + (\a:4 and 2)$);
+		\node [earth,label=\i] at (e\i) {};
+	}
+
+	\foreach \n [count=\i from 0] in {雙子,巨蟹,獅子,室女,天秤,天蠍,人馬,魔羯,寶瓶,雙魚,白羊,金牛} {
+		\pgfmathtruncatemacro{\a}{30 * \i};
+		\coordinate (z\i) at ($(sun) + (\a:8 and 4)$);
+		\node [zodiac] at (z\i) {\n};
+	}
+
+
+\end{tikzpicture}
+\end{document}
